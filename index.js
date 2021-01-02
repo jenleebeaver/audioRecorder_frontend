@@ -4,6 +4,11 @@ const endPoint = "http://localhost:3000/api/v1/recordings"
 //fetching recordings 
 document.addEventListener('DOMContentLoaded', () => {
     getRecordings();
+
+    //here we are creating a submit event on form by attaching submit event listener  
+    const createRecordingForm = document.querySelector("#create-recording-form")
+
+    createRecordingForm.addEventListener('submit', (e) => createFormHandler(e))
 });
 
 function getRecordings() {
@@ -28,4 +33,10 @@ function getRecordings() {
             document.querySelector('#recording-container').innerHTML += recordingMarkup
            });
        }))
+}
+
+//this is our formhandler that takes our createRecordingForm event listener which gathers all of the input values and passes it my function to execute the post fetch 
+function createFormHandler(e) {
+    e.preventDefault()
+    console.log(e);
 }
