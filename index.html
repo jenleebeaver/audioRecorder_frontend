@@ -13,7 +13,7 @@
 
     <div class="form-container">
         <form id="create-recording-form" style="">
-            <h3>Create a Recording</h3>
+            <h1>Create a Recording</h1>
 
             <input id='input-title' 
                 type="text" 
@@ -22,15 +22,20 @@
                 placeholder="Enter your recording name..."
                 class="input-text">
             </br>
-            <audio id='melody'
+            <audio controls 
+                id='melody'
                 name='melody'
                 placeholder="Record your audio...">
+                Create an audio recording here by linking audio recorder API 
             </audio>
             </br>
 
+            <p>Choose a user </p>
             <select id="users" name="users">
                 Iterate over users here. 
             </select>
+            <br/>
+            <br/>
             <br/>
 
             <input id='create-button'
