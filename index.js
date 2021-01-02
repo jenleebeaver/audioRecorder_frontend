@@ -1,7 +1,7 @@
-//this is our call to the user#index in our rails backend server
+//this is our get request to the recording#index in our rails backend server
 const endPoint = "http://localhost:3000/api/v1/recordings"
 
-//fetching users 
+//fetching recordings 
 document.addEventListener('DOMContentLoaded', () => {
     getRecordings();
 });
@@ -24,7 +24,7 @@ function getRecordings() {
             </div>
             </br>`;
             console.log(recording)
-            //updating the inner html with id user-container to show data in userMarkup 
+            //updating the inner html with id recording-container to show data in recordingMarkup 
             document.querySelector('#recording-container').innerHTML += recordingMarkup
            });
        }))
