@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>AudioRecorderFrontend</title>
     <!-- script links our js files  -->
-    <script type="text/javascript" src="index.js"></script>
+   
 </head>
 <body>
   <ul id="recording-container">
@@ -14,20 +14,12 @@
     <div class="form-container">
         <form id="create-recording-form" style="">
             <h1>Create a Recording</h1>
-
-            <input id='input-title' 
-                type="text" 
-                name="title" 
-                value="" 
-                placeholder="Enter your recording name..."
-                class="input-text">
+            <br/>
+            <button id='record-button'
+            type="button">Record</button>
+            <button id='stop-button'
+            type="button">Stop</button>
             </br>
-            <audio controls 
-                id='melody'
-                name='melody'
-                placeholder="Record your audio...">
-                Create an audio recording here by linking audio recorder API 
-            </audio>
             </br>
 
             <p>Choose a user </p>
@@ -35,17 +27,15 @@
                 Iterate over users here. 
             </select>
             <br/>
-            <br/>
-            <br/>
-
-            <input id='create-button'
-                type="submit"
-                name="submit"
-                value="Create New Recording"
-                class="submit">
+            
         </form>
+    </div>
+    </br>
+    <div class="sound-clips">
+
     </div>
 
   </ul>  
 </body>
+<script type="text/javascript" src="index.js"></script>
 </html>
