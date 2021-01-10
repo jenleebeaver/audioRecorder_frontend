@@ -62,29 +62,39 @@ function initRecorder() {
             mediaRecorder.onstop = function(e) {
                 console.log("recorder stopped");
                 
+                const userName = prompt('Enter user name');
                 const clipName = prompt('Enter a name for your sound clip');
                 
                 const clipContainer = document.createElement('article');
                 const clipLabel = document.createElement('p');
+                const userLabel = document.createElement('h1');
                 const audio = document.createElement('audio');
                 const deleteButton = document.createElement('button');
                 const saveButton = document.createElement('button');
                 
+                userLabel.innerHTML = userName;
+                clipLabel.innerHTML = clipName;
                 clipContainer.classList.add('clip');
                 audio.setAttribute('controls', '');
                 deleteButton.innerHTML = "Delete";
                 saveButton.innerHTML = "Save";
-                clipLabel.innerHTML = clipName;
                 
-                clipContainer.appendChild(audio);
+                clipContainer.appendChild(userLabel);
                 clipContainer.appendChild(clipLabel);
+                clipContainer.appendChild(audio);
                 clipContainer.appendChild(deleteButton);
                 clipContainer.appendChild(saveButton);
                 soundClips.appendChild(clipContainer);
                 
                 const blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
+                console.log(blob);
                 chunks = [];
                 const audioURL = window.URL.createObjectURL(blob);
+                var a = document.createElement("a");
+                a.href = audioURL;
+                a.download = "Hello.wav";
+                a.click();
+                console.log(audioURL);
                 audio.src = audioURL;
                 
                 deleteButton.onclick = function(e) {
