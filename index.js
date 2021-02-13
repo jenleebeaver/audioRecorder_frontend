@@ -4,7 +4,7 @@ const endPoint = "http://localhost:3000/api/v1/recordings"
 //fetching recordings 
 document.addEventListener('DOMContentLoaded', () => {
     initRecorder();
-    // getRecordings();
+    getRecordings();
 
     //here we are creating a submit event on form by attaching submit event listener  
     const createRecordingForm = document.querySelector("#create-recording-form")
@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     createRecordingForm.addEventListener('submit', (e) => createFormHandler(e))
 });
 
+//this is our get function to make a call to our endPoint in the API 
 function getRecordings() {
        //AJAX fetch request 
        fetch(endPoint)
@@ -23,14 +24,14 @@ function getRecordings() {
            recordings.data.forEach(recording => {
              const recordingMarkup = `
              <div data-id=${recording.id}>
-                <h1>${recording.attributes.title}</h1> 
-                <h2>${recording.attributes.melody}</h2>
+                <h1>${recording.attributes.audio.record.title}</h1> 
+                <h2>${recording.attributes.audio.name}</h2>
                 <h3>${recording.attributes.user.name}</h3>
                 <button data-id=${recording.id}>edit</button>
             </div>
             </br>`;
             // console.log(recording)
-            //updating the inner html with id recording-container to show data in recordingMarkup 
+            //updating the inner html with id recording-container to show data from recordingMarkup 
             document.querySelector('#recording-container').innerHTML += recordingMarkup
            });
        }))
