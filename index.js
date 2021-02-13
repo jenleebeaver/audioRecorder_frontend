@@ -6,9 +6,10 @@ document.addEventListener('DOMContentLoaded', () => {
     initRecorder();
     getRecordings();
 
-    //here we are creating a submit event on form by attaching submit event listener  
+     
     const createRecordingForm = document.querySelector("#create-recording-form")
 
+    //here we are creating a submit event on form by attaching submit event listener 
     createRecordingForm.addEventListener('submit', (e) => createFormHandler(e))
 });
 
@@ -20,6 +21,7 @@ function getRecordings() {
        //.then returns promises.  If the promise is fulfilled or rejected THEN the handler function will be called asynchronously (scheduled in the thread loop).
        .then(response => response.json()
        .then(recordings => {
+           //this is where we show our data 
            //call users.data.forEach because data is nested in the jsonserializer  
            recordings.data.forEach(recording => {
              const recordingMarkup = `
@@ -136,6 +138,13 @@ function initRecorder() {
 
 //this is our formhandler that takes our createRecordingForm event listener which gathers all of the input values and passes it my function to execute the post fetch 
 function createFormHandler(e) {
-    e.preventDefault()
-    console.log(e);
+    e.preventDefault()   
+    const nameUser = document.querySelector('#user-name').value 
+    const nameAudio = document.querySelector('#audio-name').value
+    const userInput = document.querySelector('#users').value
+    const userId = parseInt(userInput)
+    const clipsSound = document.querySelector('.soundClips').value
+    postRecording(nameUser, nameAudio, userInput, soundClips)
 }
+
+function 
