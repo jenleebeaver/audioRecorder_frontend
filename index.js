@@ -62,8 +62,8 @@ function initRecorder() {
             mediaRecorder.onstop = function(e) {
                 console.log("recorder stopped");
                 
-                const userName = prompt('Enter user name');
-                const clipName = prompt('Enter a name for your sound clip');
+                // const userName = prompt('Enter user name');
+                // const clipName = prompt('Enter a name for your sound clip');
                 
                 const clipContainer = document.createElement('article');
                 const clipLabel = document.createElement('p');
@@ -72,8 +72,8 @@ function initRecorder() {
                 const deleteButton = document.createElement('button');
                 const saveButton = document.createElement('button');
                 
-                userLabel.innerHTML = userName;
-                clipLabel.innerHTML = clipName;
+                // userLabel.innerHTML = userName;
+                // clipLabel.innerHTML = clipName;
                 clipContainer.classList.add('clip');
                 audio.setAttribute('controls', '');
                 deleteButton.innerHTML = "Delete";
@@ -92,7 +92,7 @@ function initRecorder() {
                 const audioURL = window.URL.createObjectURL(blob);
                 var a = document.createElement("a");
                 a.href = audioURL;
-                a.download = "Hello.wav";
+                a.download = "audio.wav";
                 a.click();
                 console.log(audioURL);
                 audio.src = audioURL;
