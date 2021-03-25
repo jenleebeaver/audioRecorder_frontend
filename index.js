@@ -141,10 +141,12 @@ function createFormHandler(e) {
     e.preventDefault()   
     const nameUser = document.querySelector('#user-name').value 
     const nameAudio = document.querySelector('#audio-name').value
-    const userInput = document.querySelector('#users').value
-    const userId = parseInt(userInput)
+    const userId = parseInt(document.querySelector('#users').value)
     const clipsSound = document.querySelector('.soundClips').value
-    postRecording(nameUser, nameAudio, userInput, soundClips)
+    postRecording(nameUser, nameAudio, userId, clipsSound)
 }
 
-function 
+//POST fetch request
+function postRecording(userName, audioName, userId, clipsSound){
+    console.log(userName, audioName, userId, clipsSound);
+}
