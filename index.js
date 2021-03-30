@@ -5,15 +5,9 @@ const endPoint = "http://localhost:3000/api/v1/recordings"
 document.addEventListener('DOMContentLoaded', () => {
     initRecorder();
     getRecordings();
-
-     
-    const createRecordingForm = document.querySelector("#create-recording-form")
-
-    //here we are creating a submit event on form by attaching submit event listener 
-    createRecordingForm.addEventListener('submit', (e) => createFormHandler(e))
 });
 
-//this is our get function to make a call to our endPoint in the API 
+//this is our get function to make a call to our API backend 
 function getRecordings() {
        //AJAX fetch request 
        fetch(endPoint)
@@ -46,10 +40,41 @@ function initRecorder() {
     let mediaRecorder;
     //stores audio data 
     let chunks = [];
+
+    //this is our formhandler that takes our createRecordingForm event listener which gathers all of the input values and passes it to a function to execute the post fetch 
+    function createFormHandler(e) {
+        e.preventDefault()   
+        const nameUser = document.querySelector('#user-name').value 
+        const nameAudio = document.querySelector('#audio-name').value
+        const userId = parseInt(document.querySelector('#users').value)
+        // const clipsSound = document.querySelector('.soundClips').value
+        const blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' })
+        // postRecording(nameUser, nameAudio, userId, blob)
+        sendAudioToServer(nameUser, nameAudio, 23, blob);
+    }
+
+    //POST fetch request
+    // function postRecording(userName, audioName, userId, blob){
+    //     console.log(userName, audioName, userId, clipsSound);
+    // }
+
+    function sendAudioToServer(nameUser, nameAudio, userId, blob) {
+        const formData = new FormData();
+        const recordingObj = JSON.stringify({ title: nameAudio, user_id: userId });
+        console.log(recordingObj);
+        console.log(blob);
+        formData.append('active_storage_attachments', blob)
+        formData.append('recording', recordingObj);
+        return fetch('http://localhost:3000/api/v1/recordings', {
+          method: 'POST',
+          body: formData
+        });
+    }
    
     // navigator object is included in the browser - chrome, safari, firefox . Here we are grabbing the audio recorder utility in the browser and checking if it exists. 
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         console.log('getUserMedia supported.');
+
         navigator.mediaDevices.getUserMedia (
            // constraints - only audio needed for this app
            {
@@ -61,7 +86,7 @@ function initRecorder() {
             mediaRecorder = new MediaRecorder(stream);
             mediaRecorder.ondataavailable = function(e) {
                 chunks.push(e.data);
-              };
+            };
             mediaRecorder.onstop = function(e) {
                 console.log("recorder stopped");
                 
@@ -89,23 +114,27 @@ function initRecorder() {
                 clipContainer.appendChild(saveButton);
                 soundClips.appendChild(clipContainer);
                 
-                const blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
-                console.log(blob);
-                chunks = [];
+                const blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' })
                 const audioURL = window.URL.createObjectURL(blob);
-                var a = document.createElement("a");
-                a.href = audioURL;
-                a.download = "audio.wav";
-                a.click();
-                console.log(audioURL);
+
+                // var a = document.createElement("a");
+                // a.href = audioURL;
+                // a.download = "audio.wav";
+                // a.click();
+                // console.log(audioURL);
+
                 audio.src = audioURL;
                 
                 deleteButton.onclick = function(e) {
                     let evtTgt = e.target;
                     evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
                 }
+
             }
-           })
+
+
+            }
+           )
      
            // Error callback
            .catch(function(err) {
@@ -116,7 +145,10 @@ function initRecorder() {
         console.log('getUserMedia not supported on your browser!');
      };
 
-   
+     
+     const createRecordingForm = document.querySelector("#create-recording-form");
+    //here we are creating a submit event on form by attaching submit event listener 
+    createRecordingForm.addEventListener('submit', (e) => createFormHandler(e))
 
      record.onclick = function() {
          //preventDefault: preventing the default functionality that makes buttons refresh page 
@@ -134,19 +166,4 @@ function initRecorder() {
         record.style.background = "";
         record.style.color = "";
         };
-}
-
-//this is our formhandler that takes our createRecordingForm event listener which gathers all of the input values and passes it my function to execute the post fetch 
-function createFormHandler(e) {
-    e.preventDefault()   
-    const nameUser = document.querySelector('#user-name').value 
-    const nameAudio = document.querySelector('#audio-name').value
-    const userId = parseInt(document.querySelector('#users').value)
-    const clipsSound = document.querySelector('.soundClips').value
-    postRecording(nameUser, nameAudio, userId, clipsSound)
-}
-
-//POST fetch request
-function postRecording(userName, audioName, userId, clipsSound){
-    console.log(userName, audioName, userId, clipsSound);
-}
+    }
