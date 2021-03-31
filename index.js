@@ -1,6 +1,6 @@
 //this is our get request to the recording#index in our rails backend server
 const endPoint = "http://localhost:3000/api/v1/recordings"
-
+let blob
 //fetching recordings 
 document.addEventListener('DOMContentLoaded', () => {
     initRecorder();
@@ -48,7 +48,10 @@ function initRecorder() {
         const nameAudio = document.querySelector('#audio-name').value
         const userId = parseInt(document.querySelector('#users').value)
         // const clipsSound = document.querySelector('.soundClips').value
-        const blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' })
+         blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
+         blobToDataURL(blob, function(dataurl){
+            console.log(dataurl);
+            });
         // postRecording(nameUser, nameAudio, userId, blob)
         sendAudioToServer(nameUser, nameAudio, 23, blob);
     }
@@ -60,16 +63,40 @@ function initRecorder() {
 
     function sendAudioToServer(nameUser, nameAudio, userId, blob) {
         const formData = new FormData();
-        const recordingObj = JSON.stringify({ title: nameAudio, user_id: userId });
-        console.log(recordingObj);
         console.log(blob);
-        formData.append('active_storage_attachments', blob)
+        const recordingObj = JSON.stringify({ title: nameAudio, user_id: userId });
         formData.append('recording', recordingObj);
         return fetch('http://localhost:3000/api/v1/recordings', {
           method: 'POST',
+        //   headers: {
+        //     "Content-type": "multipart/form-data",
+        //   },
           body: formData
         });
     }
+
+    //**dataURL to blob**
+    function dataURLtoBlob(dataurl) {
+        var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+            bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+        while(n--){
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+        return new Blob([u8arr], {type:mime});
+    }
+
+    //**blob to dataURL**
+    function blobToDataURL(blob, callback) {
+        var a = new FileReader();
+        a.onload = function(e) {callback(e.target.result);}
+        a.readAsDataURL(blob);
+    }
+
+    //test:
+    //var blob = dataURLtoBlob('data:text/plain;base64,YWFhYWFhYQ==');
+//     blobToDataURL(blob, function(dataurl){
+//    console.log(dataurl);
+//    });
    
     // navigator object is included in the browser - chrome, safari, firefox . Here we are grabbing the audio recorder utility in the browser and checking if it exists. 
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
