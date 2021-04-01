@@ -21,8 +21,8 @@ function getRecordings() {
              const recordingMarkup = `
              <div data-id=${recording.id}>
                 <h1>${recording.attributes.audio.record.title}</h1> 
-                <h2>${recording.attributes.audio.name}</h2>
-                <h3>${recording.attributes.user.name}</h3>
+                <h2>${recording.attributes.user.name}</h2>
+                <h3>${recording.attributes.audio.record.audio_url}
                 <button data-id=${recording.id}>edit</button>
             </div>
             </br>`;
@@ -44,46 +44,24 @@ function initRecorder() {
     //this is our formhandler that takes our createRecordingForm event listener which gathers all of the input values and passes it to a function to execute the post fetch 
     function createFormHandler(e) {
         e.preventDefault()   
-        const nameUser = document.querySelector('#user-name').value 
-        const nameAudio = document.querySelector('#audio-name').value
-        const userId = parseInt(document.querySelector('#users').value)
+        const audioName = document.querySelector('#audio-name').value 
+        // const userId = parseInt(document.querySelector('#users').value)
         // const clipsSound = document.querySelector('.soundClips').value
          blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
          blobToDataURL(blob, function(dataurl){
-            console.log(dataurl);
-            });
-        // postRecording(nameUser, nameAudio, userId, blob)
-        sendAudioToServer(nameUser, nameAudio, 23, blob);
+            sendAudioToServer(audioName, 23, dataurl);
+         });    
     }
 
-    //POST fetch request
-    // function postRecording(userName, audioName, userId, blob){
-    //     console.log(userName, audioName, userId, clipsSound);
+     //**dataURL to blob**
+    //  function dataURLtoBlob(dataurl) {
+    //     var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+    //         bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+    //     while(n--){
+    //         u8arr[n] = bstr.charCodeAt(n);
+    //     }
+    //     return new Blob([u8arr], {type:mime});
     // }
-
-    function sendAudioToServer(nameUser, nameAudio, userId, blob) {
-        const formData = new FormData();
-        console.log(blob);
-        const recordingObj = JSON.stringify({ title: nameAudio, user_id: userId });
-        formData.append('recording', recordingObj);
-        return fetch('http://localhost:3000/api/v1/recordings', {
-          method: 'POST',
-        //   headers: {
-        //     "Content-type": "multipart/form-data",
-        //   },
-          body: formData
-        });
-    }
-
-    //**dataURL to blob**
-    function dataURLtoBlob(dataurl) {
-        var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
-            bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
-        while(n--){
-            u8arr[n] = bstr.charCodeAt(n);
-        }
-        return new Blob([u8arr], {type:mime});
-    }
 
     //**blob to dataURL**
     function blobToDataURL(blob, callback) {
@@ -92,11 +70,21 @@ function initRecorder() {
         a.readAsDataURL(blob);
     }
 
-    //test:
-    //var blob = dataURLtoBlob('data:text/plain;base64,YWFhYWFhYQ==');
-//     blobToDataURL(blob, function(dataurl){
-//    console.log(dataurl);
-//    });
+
+    function sendAudioToServer(nameAudio, userId, audioData) {
+        const formData = new FormData();
+        //audio_url should be audioData
+        const recordingObj = JSON.stringify({ title: nameAudio, user_id: userId, audio_url: audioData });
+        console.log(recordingObj);
+        formData.append('recording', recordingObj);
+        return fetch('http://localhost:3000/api/v1/recordings', {
+          method: 'POST',
+          body: formData
+        });
+    }
+
+   
+
    
     // navigator object is included in the browser - chrome, safari, firefox . Here we are grabbing the audio recorder utility in the browser and checking if it exists. 
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
