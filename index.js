@@ -18,20 +18,23 @@ function getRecordings() {
            //this is where we show our data 
            //call users.data.forEach because data is nested in the jsonserializer  
            recordings.data.forEach(recording => {
-            const recordingData = recording.attributes
-             const recordingMarkup = `
-             <div data-id=${recording.id}>
-                <h1>${recordingData.audio.record.title}</h1> 
-                <h2>${recordingData.user.name}</h2>
-                <a>${recordingData.audio.record.audio_url}</a>
-                <button data-id=${recording.id}>edit</button>
-            </div>
-            </br>`;
-            // console.log(recording)
-            //updating the inner html with id recording-container to show data from recordingMarkup 
-            document.querySelector('#recording-container').innerHTML += recordingMarkup
+            render(recording)
            });
        }))
+}
+
+function render(recording) {
+    const recordingData = recording.attributes
+    const recordingMarkup = `
+        <div data-id=${recording.id}>
+            <h1>${recordingData.audio.record.title}</h1> 
+            <h2>${recordingData.user.name}</h2>
+            <a>${recordingData.audio.record.audio_url}</a>
+            <button data-id=${recording.id}>edit</button>
+        </div>
+        </br>`;
+        //updating the inner html with id recording-container to show data from recordingMarkup 
+    document.querySelector('#recording-container').innerHTML += recordingMarkup
 }
 
 function initRecorder() {
