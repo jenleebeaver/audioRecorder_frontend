@@ -18,11 +18,12 @@ function getRecordings() {
            //this is where we show our data 
            //call users.data.forEach because data is nested in the jsonserializer  
            recordings.data.forEach(recording => {
+            const recordingData = recording.attributes
              const recordingMarkup = `
              <div data-id=${recording.id}>
-                <h1>${recording.attributes.audio.record.title}</h1> 
-                <h2>${recording.attributes.user.name}</h2>
-                <a>${recording.attributes.audio.record.audio_url}</a>
+                <h1>${recordingData.audio.record.title}</h1> 
+                <h2>${recordingData.user.name}</h2>
+                <a>${recordingData.audio.record.audio_url}</a>
                 <button data-id=${recording.id}>edit</button>
             </div>
             </br>`;
@@ -48,7 +49,7 @@ function initRecorder() {
         // const userId = parseInt(document.querySelector('#users').value)
          blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
          blobToDataURL(blob, function(dataurl){
-            sendAudioToServer(audioName, userId, dataurl);
+            sendAudioToServer(audioName, 23, dataurl);
          });    
     }
 
