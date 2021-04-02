@@ -22,7 +22,7 @@ function getRecordings() {
              <div data-id=${recording.id}>
                 <h1>${recording.attributes.audio.record.title}</h1> 
                 <h2>${recording.attributes.user.name}</h2>
-                <h3>${recording.attributes.audio.record.audio_url}
+                <a>${recording.attributes.audio.record.audio_url}</a>
                 <button data-id=${recording.id}>edit</button>
             </div>
             </br>`;
@@ -46,10 +46,9 @@ function initRecorder() {
         e.preventDefault()   
         const audioName = document.querySelector('#audio-name').value 
         // const userId = parseInt(document.querySelector('#users').value)
-        // const clipsSound = document.querySelector('.soundClips').value
          blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
          blobToDataURL(blob, function(dataurl){
-            sendAudioToServer(audioName, 23, dataurl);
+            sendAudioToServer(audioName, userId, dataurl);
          });    
     }
 
@@ -77,7 +76,7 @@ function initRecorder() {
         const recordingObj = JSON.stringify({ title: nameAudio, user_id: userId, audio_url: audioData });
         console.log(recordingObj);
         formData.append('recording', recordingObj);
-        return fetch('http://localhost:3000/api/v1/recordings', {
+        return fetch(endPoint, {
           method: 'POST',
           body: formData
         });
