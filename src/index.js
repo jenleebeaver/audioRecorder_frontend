@@ -18,6 +18,11 @@ function getRecordings() {
            //this is where we show our data 
            //call users.data.forEach because data is nested in the jsonserializer  
            recordings.data.forEach(recording => {
+            debugger
+            //creating a new instance of recording class by passing in recording object from recording.js
+            //args pass attributes to recording class
+            const newRecording = new Recording(recording.id, recording.attributes); 
+
             render(recording)
            });
        }))
