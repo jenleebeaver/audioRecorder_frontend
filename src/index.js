@@ -135,6 +135,11 @@ function initRecorder() {
      const createRecordingForm = document.querySelector("#create-recording-form");
     //here we are creating a submit event on form by attaching submit event listener 
     createRecordingForm.addEventListener('submit', (e) => createFormHandler(e))
+    //listening for click event on recording container  
+    const recordingContainer = document.querySelector('#recording-container')
+    recordingContainer.addEventListener('click', e => {
+        console.log('clicked');
+    });
 
      record.onclick = function() {
          //preventDefault: preventing the default functionality that makes buttons refresh page 
