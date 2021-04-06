@@ -139,6 +139,9 @@ function initRecorder() {
     const recordingContainer = document.querySelector('#recording-container')
     recordingContainer.addEventListener('click', e => {
         console.log('clicked');
+        const id = parseInt(e.target.dataset.id);
+        const recording = Recording.findById(id);
+        console.log(recording);
     });
 
      record.onclick = function() {
