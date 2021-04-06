@@ -7,36 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
     getRecordings();
 });
 
-//this is our get function to make a call to our API backend 
-function getRecordings() {
-       //AJAX fetch request 
-       fetch(endPoint)
-       //using response JSON to append elements to the DOM 
-       //.then returns promises.  If the promise is fulfilled or rejected THEN the handler function will be called asynchronously (scheduled in the thread loop).
-       .then(response => response.json()
-       .then(recordings => {
-           //this is where we show our data 
-           //call users.data.forEach because data is nested in the jsonserializer  
-           recordings.data.forEach(recording => {
-            render(recording)
-           });
-       }))
-}
-
-function render(recording) {
-    const recordingData = recording.attributes
-    const recordingMarkup = `
-        <div data-id=${recording.id}>
-            <h1>${recordingData.audio.record.title}</h1> 
-            <h2>${recordingData.user.name}</h2>
-            <a>${recordingData.audio.record.audio_url}</a>
-            <button data-id=${recording.id}>edit</button>
-        </div>
-        </br>`;
-        //updating the inner html with id recording-container to show data from recordingMarkup 
-    document.querySelector('#recording-container').innerHTML += recordingMarkup
-}
-
 function initRecorder() {
     const record = document.querySelector('#record-button');
     const stop = document.querySelector('#stop-button');
@@ -82,13 +52,11 @@ function initRecorder() {
         formData.append('recording', recordingObj);
         return fetch(endPoint, {
           method: 'POST',
-          body: formData
-        });
+          headers: {"Content-Type": "application/json"},
+          body: recordingObj
+        })
     }
-
-   
-
-   
+  
     // navigator object is included in the browser - chrome, safari, firefox . Here we are grabbing the audio recorder utility in the browser and checking if it exists. 
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         console.log('getUserMedia supported.');
@@ -185,3 +153,28 @@ function initRecorder() {
         record.style.color = "";
         };
     }
+
+
+//this is our get function to make a call to our API backend 
+function getRecordings() {
+       //AJAX fetch request 
+       fetch(endPoint)
+       //using response JSON to append elements to the DOM 
+       //.then returns promises.  If the promise is fulfilled or rejected THEN the handler function will be called asynchronously (scheduled in the thread loop).
+       .then(response => response.json()
+       .then(recordings => {
+           //this is where we show our data 
+           //call users.data.forEach because data is nested in the jsonserializer  
+           recordings.data.forEach(recording => {
+                //creating a new instance of recording class by passing in recording object from recording.js
+                //args pass attributes to recording class
+                const recordingData = recording.attributes.audio.record
+                const newRecording = new Recording(parseInt(recording.id), recordingData.title, recordingData.audio_url, recording.attributes.user.name); 
+                //updating the inner html with id recording-container to show data from Recording Card in recording.js
+                document.querySelector('#recording-container').innerHTML += newRecording.renderRecordingCard();
+                // debugger
+                // render(recording)
+           });
+       }))
+}
+
