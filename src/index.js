@@ -15,6 +15,11 @@ function initRecorder() {
     //stores audio data 
     let chunks = [];
 
+    // RECORDING FORM 
+    const createRecordingForm = document.querySelector("#create-recording-form");
+    //here we are creating a submit event on form by attaching submit event listener 
+    createRecordingForm.addEventListener('submit', (e) => createFormHandler(e))
+
     //this is our formhandler that takes our createRecordingForm event listener which gathers all of the input values and passes it to a function to execute the post fetch 
     function createFormHandler(e) {
         e.preventDefault()   
@@ -131,11 +136,8 @@ function initRecorder() {
         console.log('getUserMedia not supported on your browser!');
      };
 
-     
-     const createRecordingForm = document.querySelector("#create-recording-form");
-    //here we are creating a submit event on form by attaching submit event listener 
-    createRecordingForm.addEventListener('submit', (e) => createFormHandler(e))
-    //listening for click event on recording container  
+   
+    //EDIT FORM
     const recordingContainer = document.querySelector('#recording-container')
     recordingContainer.addEventListener('click', e => {
         console.log('clicked');
@@ -144,6 +146,8 @@ function initRecorder() {
         console.log(recording);
         document.querySelector('#update-recording').innerHTML = recording.renderUpdateForm();
     });
+    // listen for the submit event of the edit form and handle the data
+    document.querySelector('#update-recording').addEventListener('submit', e => updateFormHandler(e))
 
      record.onclick = function() {
          //preventDefault: preventing the default functionality that makes buttons refresh page 
