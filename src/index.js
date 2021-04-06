@@ -149,7 +149,15 @@ function initRecorder() {
     // listen for the submit event of the edit form and handle the data
     document.querySelector('#update-recording').addEventListener('submit', e => updateFormHandler(e))
 
-    
+    function updateFormHandler(e) {
+        e.preventDefault();
+        const id = parseInt(e.target.dataset.id);
+        const recording = Recording.findById(id);
+        const title = e.target.querySelector('#input-title').value;
+        const audio_url = e.target.querySelector('#input-data').value;
+        patchRecording(recording, title, audio_url)
+    }
+
      record.onclick = function() {
          //preventDefault: preventing the default functionality that makes buttons refresh page 
         mediaRecorder.start();
@@ -169,7 +177,7 @@ function initRecorder() {
     }
 
 
-//this is our get function to make a call to our API backend 
+//make a call to our API backend 
 function getRecordings() {
        //AJAX fetch request 
        fetch(endPoint)
