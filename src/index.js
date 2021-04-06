@@ -27,7 +27,7 @@ function initRecorder() {
         // const userId = parseInt(document.querySelector('#users').value)
          blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
          blobToDataURL(blob, function(dataurl){
-            sendAudioToServer(audioName, 23, dataurl);
+            sendAudioToServer(audioName, userId, dataurl);
          });    
     }
 
@@ -59,6 +59,13 @@ function initRecorder() {
           method: 'POST',
           headers: {"Content-Type": "application/json"},
           body: recordingObj
+        })
+        .then(response => response.json())
+        .then(recording => {
+            console.log(recording);
+            const newRecording = new Recording(parseInt(recording.id), recording.title, recording.audio_url, recording.user); 
+                //updating the inner html with id recording-container to show data from Recording Card in recording.js
+                document.querySelector('#recording-container').innerHTML += newRecording.renderRecordingCard();
         })
     }
   
@@ -144,13 +151,20 @@ function initRecorder() {
         const id = parseInt(e.target.dataset.id);
         const recording = Recording.findById(id);
         console.log(recording);
-        document.querySelector('#update-recording').innerHTML = recording.renderUpdateForm();
+        // document.querySelector('#update-recording').innerHTML = recording.renderUpdateForm();
+        e.target.innerHTML = recording.renderUpdateForm();
     });
     // listen for the submit event of the edit form and handle the data
-    document.querySelector('#update-recording').addEventListener('submit', e => updateFormHandler(e))
+    document.querySelector('#recording-container').addEventListener('submit', updateFormHandler)
 
+    // e => {
+    //     debugger
+    //     updateFormHandler(e)
+    // })
+    
     function updateFormHandler(e) {
         e.preventDefault();
+        
         const id = parseInt(e.target.dataset.id);
         const recording = Recording.findById(id);
         const title = e.target.querySelector('#input-title').value;
