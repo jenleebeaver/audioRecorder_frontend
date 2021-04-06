@@ -21,6 +21,11 @@ class Recording {
             </div>
             </br>`;
     }
+
+    //utility method 
+    static findById(id) {
+        return this.all.find(recording => recording.id === id);
+    }
 }
 
 Recording.all = [];
