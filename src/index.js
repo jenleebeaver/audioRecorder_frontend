@@ -52,8 +52,9 @@ function initRecorder() {
         formData.append('recording', recordingObj);
         return fetch(endPoint, {
           method: 'POST',
-          body: formData
-        });
+          headers: {"Content-Type": "application/json"},
+          body: recordingObj
+        })
     }
   
     // navigator object is included in the browser - chrome, safari, firefox . Here we are grabbing the audio recorder utility in the browser and checking if it exists. 
@@ -165,17 +166,14 @@ function getRecordings() {
            //this is where we show our data 
            //call users.data.forEach because data is nested in the jsonserializer  
            recordings.data.forEach(recording => {
-            //creating a new instance of recording class by passing in recording object from recording.js
-            //args pass attributes to recording class
-            console.log(recording);
-            const recordingData = recording.attributes.audio.record
-            const newRecording = new Recording(parseInt(recording.id), recordingData.title, recordingData.audio_url, recording.attributes.user.name); 
-            console.log(newRecording);
-
-             //updating the inner html with id recording-container to show data from Recording Card in recording.js
-            document.querySelector('#recording-container').innerHTML += newRecording.renderRecordingCard()
-            // debugger
-            // render(recording)
+                //creating a new instance of recording class by passing in recording object from recording.js
+                //args pass attributes to recording class
+                const recordingData = recording.attributes.audio.record
+                const newRecording = new Recording(parseInt(recording.id), recordingData.title, recordingData.audio_url, recording.attributes.user.name); 
+                //updating the inner html with id recording-container to show data from Recording Card in recording.js
+                document.querySelector('#recording-container').innerHTML += newRecording.renderRecordingCard();
+                // debugger
+                // render(recording)
            });
        }))
 }
