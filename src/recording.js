@@ -26,6 +26,24 @@ class Recording {
     static findById(id) {
         return this.all.find(recording => recording.id === id);
     }
+
+    renderUpdateForm() {
+        return `
+        <form data-id=${this.id}>
+            <h3>Edit Your Recording</h3>
+
+            <label>Title</label>
+            <input id='input-title' type="text" name="title" value="${this.title}">
+            <br/>
+
+            <label>Audio Data</label>
+            <input id='input-data' type="text" name="audio_url" value="${this.audio_url}">
+            <br/>
+
+            <input id='edit-button' type="submit" name="submit" value="Edit Recording" class="submit>    
+        </form>
+        `;
+    }
 }
 
 Recording.all = [];
