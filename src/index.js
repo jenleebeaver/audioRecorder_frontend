@@ -149,6 +149,7 @@ function initRecorder() {
     // listen for the submit event of the edit form and handle the data
     document.querySelector('#update-recording').addEventListener('submit', e => updateFormHandler(e))
 
+    
      record.onclick = function() {
          //preventDefault: preventing the default functionality that makes buttons refresh page 
         mediaRecorder.start();
