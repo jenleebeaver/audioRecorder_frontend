@@ -142,6 +142,7 @@ function initRecorder() {
         const id = parseInt(e.target.dataset.id);
         const recording = Recording.findById(id);
         console.log(recording);
+        document.querySelector('#update-recording').innerHTML = recording.renderUpdate
     });
 
      record.onclick = function() {
