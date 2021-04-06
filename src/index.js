@@ -158,6 +158,20 @@ function initRecorder() {
         patchRecording(recording, title, audio_url)
     }
 
+    function patchRecording(recording, title, audio_url) {
+        const bodyJSON = {title, audio_url}
+        fetch(`http://localhost:3000/api/v1/recordings/${recording.id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+            },
+            body: JSON.stringify(bodyJSON),
+        })
+        .then(res => res.json())
+        .then(updatedRecording => console.log(updatedRecording));
+    }
+
      record.onclick = function() {
          //preventDefault: preventing the default functionality that makes buttons refresh page 
         mediaRecorder.start();
