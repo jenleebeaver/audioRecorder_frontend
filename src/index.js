@@ -24,10 +24,10 @@ function initRecorder() {
     function createFormHandler(e) {
         e.preventDefault()   
         const audioName = document.querySelector('#audio-name').value 
-        // const userId = parseInt(document.querySelector('#users').value)
+        const userName = parseInt(document.querySelector('#users').value)
          blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
          blobToDataURL(blob, function(dataurl){
-            sendAudioToServer(audioName, userId, dataurl);
+            sendAudioToServer(audioName, 3, dataurl);
          });    
     }
 
@@ -151,11 +151,12 @@ function initRecorder() {
         const id = parseInt(e.target.dataset.id);
         const recording = Recording.findById(id);
         console.log(recording);
-        // document.querySelector('#update-recording').innerHTML = recording.renderUpdateForm();
-        e.target.innerHTML = recording.renderUpdateForm();
+        document.querySelector('#update-recording').innerHTML = recording.renderUpdateForm();
+        //solution for inner edit form needs to be nested 
+        // e.target.innerHTML = recording.renderUpdateForm();
     });
     // listen for the submit event of the edit form and handle the data
-    document.querySelector('#recording-container').addEventListener('submit', updateFormHandler)
+    document.querySelector('#update-recording').addEventListener('submit', e => updateFormHandler(e))
 
     // e => {
     //     debugger

@@ -35,9 +35,11 @@ class Recording {
             <label>Title:</label>
             <input id='input-title' type="text" name="title" value="${this.title}">
             <br/>
+            <br/>
 
             <label>Audio Data:</label>
             <input id='input-data' type="text" name="audio_url" value="${this.audio_url}">
+            <br/>
             <br/>
 
             <input id='edit-button' type="submit" value="Edit Recording">    
