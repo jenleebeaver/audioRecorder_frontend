@@ -175,6 +175,7 @@ function initRecorder() {
 
     function patchRecording(recording, title, audio_url) {
         const bodyJSON = {title, audio_url}
+        console.log(bodyJSON)
         fetch(`http://localhost:3000/api/v1/recordings/${recording.id}`, {
             method: 'PATCH',
             headers: {
@@ -183,7 +184,7 @@ function initRecorder() {
             },
             body: JSON.stringify(bodyJSON),
         })
-        .then(res => res.json())
+        .then(response => response.json())
         .then(updatedRecording => console.log(updatedRecording));
     }
 
