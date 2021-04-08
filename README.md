@@ -3,5 +3,5 @@
 
  Note:
  *Will have to use a different backend to store audio*
- *add :img_url to user for user avatar*
  *create categories for recordings for associated models*
+ *add pin and like buttons to recording list*
