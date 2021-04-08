@@ -24,7 +24,6 @@ function initRecorder() {
     function createFormHandler(e) {
         e.preventDefault()   
         const audioName = document.querySelector('#audio-name').value 
-        const userName = parseInt(document.querySelector('#users').value)
          blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
          blobToDataURL(blob, function(dataurl){
             sendAudioToServer(audioName, 3, dataurl);
