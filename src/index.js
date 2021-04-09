@@ -3,6 +3,7 @@ const endPoint = "http://localhost:3000/api/v1/recordings"
 let blob
 //fetching recordings 
 document.addEventListener('DOMContentLoaded', () => {
+    console.log("DOM is Loaded");
     initRecorder();
     getRecordings();
 });
