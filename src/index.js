@@ -63,10 +63,35 @@ function initRecorder() {
     const loginForm = document.querySelector('#login-form')
     loginForm.addEventListener("submit", (e) => loginFormHandler(e))
 
-    function loginFormHandler() {
+    function loginFormHandler(e) {
         //prevents refresh on submit 
         e.preventDefault()
-        console.log(e);
+        const emailInput = e.target.querySelector('#login-form').value
+        const pwInput = e.target.querySelector('#login-password').value
+        loginFetch(emailInput, pwInput)
+    }
+
+    function loginFetch(email, password){
+        //strong params = nested user data 
+        const bodyData = {user: {
+            email: email, 
+            password: password
+        }
+    }
+
+        fetch("http://localhost:3000/api/v1/login", {
+            method: "POST",
+            headers: {"Content-Type": "applicaton/json"},
+            body: JSON.stringify(bodyData)
+        })
+        //promise represents the value of a complete asynchronous operation. Allows us to know if event is a success or failure: pending, fulfilled, or rejected
+        .then(response => response.json())
+        .then(json => {
+            console.log(json);
+            //storing token from login fetch request json in localStorage
+            localStorage.setItem('jwt_token', json.jwt)
+            renderUserProfile()
+        )}
     }
   
     // navigator object is included in the browser - chrome, safari, firefox . Here we are grabbing the audio recorder utility in the browser and checking if it exists. 
