@@ -23,29 +23,46 @@
 </head>
 <body>
 
-    <div class="form-container">
-        <form id="create-recording-form" style="">
-            <h1>Create Your Recording!</h1>
-            <br/>
+  <form id="login-form">
+    <div class="form-group">
+      <p>Email</p>
+      <input type="email" 
+            id="login-email">
+      <small id="emailHelp">We'll never share your email with anyone else.</small>
+    </div>
 
-            <input id='audio-name' 
-            type="text" 
-            name="audio" 
-            value="" 
-            placeholder="Enter the title of your audio clip..." class="input-text">
-            <br/>
-            <br/>
+    <div class="form-group">
+      <p>Password</p>
+      <input type="password" 
+            id="login-password">
+    </div>
 
-            <button id='record-button'
-            type="button">Record</button>
-            <button id='stop-button'
-            type="button">Stop</button>
-            </br>
-            </br>         
+    <button type="submit">Submit</button>
+  </form>
 
-          </br>
-          <div class="sound-clips">
-          </div>
+  <div class="form-container">
+    <form id="create-recording-form" style="">
+      <h1>Create Your Recording!</h1>
+      <br/>
+
+        <input id='audio-name' 
+          type="text" 
+          name="audio" 
+          value="" 
+          placeholder="Enter the title of your audio clip..." class="input-text">
+        <br/>
+        <br/>
+
+        <button id='record-button'
+                type="button">Record</button>
+        <button id='stop-button'
+                type="button">Stop</button>
+        </br>
+        </br>         
+
+        </br>
+        <div class="sound-clips">
+        </div>
   
             <!-- <p>Choose a user </p>
             <select id="users" name="users">
@@ -54,13 +71,13 @@
             <br/>
             <br/> -->
 
-            <input id= 'create-button' 
-            type="submit" 
-            name="submit" 
-            value="Create New Audio File" 
-            class="submit">
+        <input id= 'create-button' 
+                type="submit" 
+                name="submit" 
+                value="Create New Audio File" 
+                class="submit">
  
-        </form>
+      </form>
     </div>
 
   <ul id="recording-container">
