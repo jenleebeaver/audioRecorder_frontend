@@ -58,6 +58,16 @@ function initRecorder() {
                 document.querySelector('#recording-container').innerHTML += newRecording.renderRecordingCard();
         })
     }
+
+    //LOGIN FORM 
+    const loginForm = document.querySelector('#login-form')
+    loginForm.addEventListener("submit", (e) => loginFormHandler(e))
+
+    function loginFormHandler() {
+        //prevents refresh on submit 
+        e.preventDefault()
+        console.log(e);
+    }
   
     // navigator object is included in the browser - chrome, safari, firefox . Here we are grabbing the audio recorder utility in the browser and checking if it exists. 
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
