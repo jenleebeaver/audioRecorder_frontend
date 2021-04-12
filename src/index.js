@@ -78,10 +78,10 @@ function initRecorder() {
             password: password
         }
     }
-
+        console.log(bodyData);
         fetch("http://localhost:3000/api/v1/login", {
             method: "POST",
-            headers: {"Content-Type": "applicaton/json"},
+            headers: {"Content-Type": "application/json"},
             body: JSON.stringify(bodyData)
         })
         //promise represents the value of a complete asynchronous operation. Allows us to know if event is a success or failure: pending, fulfilled, or rejected
