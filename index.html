@@ -32,37 +32,43 @@
 </head>
 <body>
 
-  <form id="login-form">
-    <h1>Login Form</h1>
-    <div class="form-group">
-      <p>Email</p>
-      <input type="email" 
-            id="login-email">
-      </br>
-      <small id="emailHelp">We'll never share your email with anyone else.</small>
-    </div>
+  <br/>
+  <br/>
+  <div class="login-container">
+    <form id="login-form">
+      <h1>Login Form</h1>
+      <div class="form-group">
+        <p>Enter your email.</p>
+        <input type="email" 
+              id="login-email">
+        </br>
+        <small id="emailHelp">We'll never share your email with anyone else.</small>
+      </div>
 
-    <div class="form-group">
-      <p>Password</p>
-      <input type="password" 
-            id="login-password">
-    </div>
+      <div class="form-group">
+        <p>Enter your password.</p>
+        <input type="password" 
+              id="login-password">
+      </div>
+  </div>
 
-    <button type="submit">Submit</button>
+    <button type="submit">LOGIN</button>
   </form>
   </br>
   </br>
+  <br/>
+  <br/>
 
   <div class="form-container">
     <form id="create-recording-form" style="">
       <h1>Create Your Recording!</h1>
       <br/>
 
+        <p>Enter the title of your creation.</p>
         <input id='audio-name' 
           type="text" 
           name="audio" 
-          value="" 
-          placeholder="Enter the title of your audio clip..." class="input-text">
+          value="">
         <br/>
         <br/>
 
@@ -87,7 +93,7 @@
         <input id= 'create-button' 
                 type="submit" 
                 name="submit" 
-                value="Create New Audio File" 
+                value="CREATE" 
                 class="submit">
  
       </form>
@@ -96,6 +102,7 @@
   </br>
   
   <ul id="recording-container">
+    <br/>
     <h1><u>THIS IS A LIST OF YOUR RECORDINGS</u></h1>
   </ul>
 
