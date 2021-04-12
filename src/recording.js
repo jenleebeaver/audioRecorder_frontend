@@ -18,6 +18,7 @@ class Recording {
                 <a>${this.audio_url}</a>
                 <br/>
                 <button data-id=${this.id}>edit</button>
+                <button data-id=${this.id}>DELETE</button>
             </div>
             </br>`;
     }
@@ -40,7 +41,7 @@ class Recording {
     renderUpdateForm() {
         return `
         <form data-id=${this.id}>
-            <h3>Edit Your Recording</h3>
+            <h1>Edit Your Recording</h1>
 
             <label>Title:</label>
             <input id='input-title' type="text" name="title" value="${this.title}">
@@ -52,8 +53,7 @@ class Recording {
             <br/>
             <br/>
 
-            <input id='edit-button' type="submit" value="Edit Recording">  
-            <input id='delete-button' type="submit" value="Delete Recording">   
+            <input id='edit-button' type="submit" value="Edit Recording">    
         </form>
         `;
     }
