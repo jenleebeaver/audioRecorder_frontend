@@ -52,7 +52,8 @@ class Recording {
             <br/>
             <br/>
 
-            <input id='edit-button' type="submit" value="Edit Recording">    
+            <input id='edit-button' type="submit" value="Edit Recording">  
+            <input id='delete-button' type="submit" value="Delete Recording">   
         </form>
         `;
     }
