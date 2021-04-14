@@ -13,9 +13,9 @@ class Recording {
         // debugger
         return `
             <div data-id=${this.id}>
-                <h1>${this.title}</h1> 
-                <h2>${this.user}</h2>
-                <a>${this.audio_url}</a>
+                <h3>${this.title}</h3> 
+                <p>${this.user}</p>
+                <p>${this.audio_url}</p>
                 <br/>
                 <button data-id=${this.id}>edit</button>
                 <button data-id=${this.id}>DELETE</button>

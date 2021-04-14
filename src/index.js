@@ -135,20 +135,20 @@ function initRecorder() {
                 const userLabel = document.createElement('h1');
                 const audio = document.createElement('audio');
                 const deleteButton = document.createElement('button');
-                const saveButton = document.createElement('button');
+                // const saveButton = document.createElement('button');
                 
                 // userLabel.innerHTML = userName;
                 // clipLabel.innerHTML = clipName;
                 clipContainer.classList.add('clip');
                 audio.setAttribute('controls', '');
                 deleteButton.innerHTML = "Delete";
-                saveButton.innerHTML = "Save";
+                // saveButton.innerHTML = "Save";
                 
                 clipContainer.appendChild(userLabel);
                 clipContainer.appendChild(clipLabel);
                 clipContainer.appendChild(audio);
                 clipContainer.appendChild(deleteButton);
-                clipContainer.appendChild(saveButton);
+                // clipContainer.appendChild(saveButton);
                 soundClips.appendChild(clipContainer);
                 
                 const blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' })
