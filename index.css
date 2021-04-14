@@ -42,52 +42,59 @@ p {
 }
 
 button {
-    font-family: Work Sans;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 16px;
-    line-height: 19px;
-    color: rgba(2, 35, 58, 0.88);
+    font-family: 'Work Sans', sans-serif !important;
+    font-style: normal !important;
+    font-weight: bold !important;
+    font-size: 16px !important;
+    line-height: 19px !important;
+    color: rgba(2, 35, 58, 0.88) !important;
 
     /* position: absolute; */
-    width: 182px;
-    height: 64px;
+    width: 182px !important;
+    height: 64px !important;
     /* left: 439px;
     top: 676px; */
 
-    background: linear-gradient(180deg, #9DFFC5 50%, rgba(157, 255, 197, 0) 114.84%);
-    border-radius: 36px;
-    border-color: rgba(2, 35, 58, 0.88); 
+    background: linear-gradient(180deg, #9DFFC5 50%, rgba(157, 255, 197, 0) 114.84%) !important;
+    border-radius: 36px !important;
+    border-color: rgba(2, 35, 58, 0.88) !important; 
 }
 
 button:hover {
-    color: #9DFFC5;
+    color: #9DFFC5 !important;
 
-    width: 186px;
-    height: 68px;
-    background: linear-gradient(180deg, rgba(157, 255, 197, 0) 50%, #9DFFC5 114.84%);
-    border-color: #9DFFC5;
+    width: 186px !important;
+    height: 68px !important;
+    background: linear-gradient(180deg, rgba(157, 255, 197, 0) 50%, #9DFFC5 114.84%) !important;
+    border-color: #9DFFC5 !important;
 }
 
 input {
     /* position: absolute; */
-    width: 380px;
-    height: 64px;
+    width: 380px !important;
+    height: 64px !important;
     /* left: 514px;
     top: 304px; */
 
-    background: #0C2A40;
-    border: 1px solid #FFFFFF;
-    box-sizing: border-box;
-    border-radius: 36px;
+    background: #0C2A40 !important;
+    border: 1px solid #FFFFFF !important;
+    box-sizing: border-box !important;
+    border-radius: 36px !important;
 }
 
 .login-container {
-    background-color: rgba(2, 35, 58, 0.88);
+    background-color: rgb(2 35 58 / 93%);
     color: #FFFFFF;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .form-container {
+    display: none;
+
     background-color: rgba(2, 35, 58, 0.88);
     color: #FFFFFF;
     position: fixed;

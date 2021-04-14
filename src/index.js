@@ -4,9 +4,28 @@ let blob
 //fetching recordings 
 document.addEventListener('DOMContentLoaded', () => {
     console.log("DOM is Loaded");
+    initLoad();
     initRecorder();
     getRecordings();
 });
+
+function initLoad() {
+    const userExist = localStorage.getItem('jwt_token');
+    if (userExist) {
+        document.querySelector('.logout-container').style.display = 'block';
+        document.querySelector('.login-container').style.display = 'none';
+        document.querySelector('.form-container').style.display = 'block';
+        document.querySelector('#recording-list-container').style.display = 'flex';    
+    } else {
+        document.querySelector('.logout-container').style.display = 'none';
+        document.querySelector('#recording-list-container').style.display = 'none';  
+    }
+}
+
+function logout() {
+        localStorage.removeItem('jwt_token');
+        location.reload();
+}
 
 function initRecorder() {
     const record = document.querySelector('#record-button');
@@ -104,7 +123,8 @@ function initRecorder() {
         })
         .then(res => res.json())
         .then(json => {
-            alert(`Welcome back ${json.user.data.attributes.name}`)
+            alert(`Welcome back ${json.user.data.attributes.name}`);
+            initLoad();
         })
     }
   
