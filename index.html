@@ -62,10 +62,15 @@
   <br/>
 
   <div class="form-container">
-    <form id="create-recording-form" style="">
-      <h1>Welcome ${json.user.data.attributes.name}</h1>
+    <form id="create-recording-form" >
+      <h1>
+        Welcome 
+      </br>
+        ${json.user.data.attributes.name}
+      </h1>
       <br/>
 
+      <div id="title-input">
         <p>Enter the title of your creation.</p>
         <input id='audio-name' 
           type="text" 
@@ -73,13 +78,16 @@
           value="">
         <br/>
         <br/>
+      </div>
 
+      <div id="recorder-buttons">
         <button id='record-button'
                 type="button">Record</button>
         <button id='stop-button'
                 type="button">Stop</button>
         </br>
-        </br>         
+        </br> 
+      </div>        
 
         </br>
         <div class="sound-clips">
