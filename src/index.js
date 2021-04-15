@@ -12,12 +12,12 @@ document.addEventListener('DOMContentLoaded', () => {
 function initLoad() {
     const userExist = localStorage.getItem('jwt_token');
     if (userExist) {
-        document.querySelector('.logout-container').style.display = 'block';
+        document.querySelector('.logout-btn').style.display = 'block';
         document.querySelector('.login-container').style.display = 'none';
         document.querySelector('.form-container').style.display = 'block';
         document.querySelector('#recording-list-container').style.display = 'flex';    
     } else {
-        document.querySelector('.logout-container').style.display = 'none';
+        document.querySelector('.logout-btn').style.display = 'none';
         document.querySelector('#recording-list-container').style.display = 'none';  
     }
 }
@@ -59,7 +59,7 @@ function initRecorder() {
 
 
     function sendAudioToServer(nameAudio, userId, audioData) {
-        const formData = new FormData();
+        const formData = new FormData;
         //audio_url should be audioData
         const recordingObj = JSON.stringify({ title: nameAudio, user_id: userId, audio_url: audioData });
         console.log(recordingObj);
