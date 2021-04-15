@@ -101,12 +101,27 @@ input {
     /* left: calc(50% - (506px/2) - 330px); */
     left: 25%;
     /* height: 100%; */
-    border-radius: 600px;
-    margin-top: 74px;
-    margin-bottom: 74px;
+    border-radius: 600px !important;
+    margin-top: 24px !important;
+    margin-bottom: 64px !important;
     width: 570px;
 
     text-align: center;  
+}
+
+.logout-btn {
+    color: #FFFFFF !important;
+    background: rgba(2, 35, 58, 0.88) !important;
+    border-color: none !important; 
+}
+
+.logout-btn:hover {
+    color: #9DFFC5 !important;
+
+    width: 186px !important;
+    height: 68px !important;
+    background: rgba(2, 35, 58, 0.88) !important;
+    border-color: none !important;
 }
 
 #create-recording-form {
@@ -131,7 +146,7 @@ input {
     height: 64px !important;
     /* left: 439px;
     top: 676px; */
-    margin-top: 120px !important;
+    margin-top: 80px !important;
 
     background: linear-gradient(180deg, #9DFFC5 50%, rgba(157, 255, 197, 0) 114.84%) !important;
     border-radius: 36px !important;
