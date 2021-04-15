@@ -131,6 +131,8 @@ input {
 #recording-container {
     background-color: #02233A, 88% ;
     color: #FFFFFF;
+    overflow: scroll;
+    padding: 0px, 56px;
 }
 
 #create-button {
@@ -168,6 +170,20 @@ input {
 
 #recorder-buttons {
     margin-top: 56px;
+}
+
+/* EDIT FORM  */
+#input-title {
+      /* position: absolute; */
+      width: 321px !important;
+      height: 64px !important;
+      /* left: 514px;
+      top: 304px; */
+  
+      background: #0C2A40 !important;
+      border: 1px solid #FFFFFF !important;
+      box-sizing: border-box !important;
+      border-radius: 36px !important;
 }
 
 

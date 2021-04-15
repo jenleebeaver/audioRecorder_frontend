@@ -41,12 +41,14 @@ function initRecorder() {
     createRecordingForm.addEventListener('submit', (e) => createFormHandler(e))
 
     //this is our formhandler that takes our createRecordingForm event listener which gathers all of the input values and passes it to a function to execute the post fetch 
+    //grab ID from jwt_token 
     function createFormHandler(e) {
         e.preventDefault()   
         const audioName = document.querySelector('#audio-name').value 
+        const idUser = localStorage.getItem('jwt_token')  
          blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
          blobToDataURL(blob, function(dataurl){
-            sendAudioToServer(audioName, 3, dataurl);
+            sendAudioToServer(audioName, idUser, dataurl);
          });    
     }
 
@@ -71,10 +73,11 @@ function initRecorder() {
         })
         .then(response => response.json())
         .then(recording => {
-            console.log(recording);
-            const newRecording = new Recording(parseInt(recording.id), recording.title, recording.audio_url, recording.user); 
-                //updating the inner html with id recording-container to show data from Recording Card in recording.js
-                document.querySelector('#recording-container').innerHTML += newRecording.renderRecordingCard();
+            location.reload();
+            // console.log(recording);
+            // const newRecording = new Recording(parseInt(recording.id), recording.title, recording.audio_url, recording.user); 
+            //     //updating the inner html with id recording-container to show data from Recording Card in recording.js
+            //     document.querySelector('#recording-container').innerHTML += newRecording.renderRecordingCard();
         })
     }
 
@@ -204,13 +207,15 @@ function initRecorder() {
 
    
     //EDIT FORM
+    //with delete button getElementById('delete-button')
     const recordingContainer = document.querySelector('#recording-container')
     recordingContainer.addEventListener('click', e => {
         console.log('clicked');
         const id = parseInt(e.target.dataset.id);
         const recording = Recording.findById(id);
-        console.log(recording);
+        console.log(recording); 
         document.querySelector('#update-recording').innerHTML = recording.renderUpdateForm();
+        location.reload();
         //solution for inner edit form needs to be nested 
         // e.target.innerHTML = recording.renderUpdateForm();
     });
@@ -244,8 +249,25 @@ function initRecorder() {
             body: JSON.stringify(bodyJSON),
         })
         .then(response => response.json())
-        .then(updatedRecording => console.log(updatedRecording));
+        .then(updatedRecording => {
+            console.log(updatedRecording)
+            alert(`Your recording has been edited.`)
+            initLoad()
+        });
     }
+
+    //DELETE
+    // const deleteButton = document.getElementById("delete-button");
+    // deleteButton.addEventListener('click', e => {
+    //     console.log('clicked');
+    //     // const id = parseInt(e.target.dataset.id);
+    //     // const recording = Recording.findById(id);
+    //     // console.log(recording);
+    //     // document.querySelector('#update-recording').innerHTML = recording.renderUpdateForm();
+    //     //solution for inner edit form needs to be nested 
+    //     // e.target.innerHTML = recording.renderUpdateForm();
+    // });
+     
 
      record.onclick = function() {
          //preventDefault: preventing the default functionality that makes buttons refresh page 

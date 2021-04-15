@@ -17,8 +17,8 @@ class Recording {
                 <p>${this.user}</p>
                 <p>${this.audio_url}</p>
                 <br/>
-                <button data-id=${this.id}>edit</button>
-                <button data-id=${this.id}>DELETE</button>
+                <button id="edit-button" data-id=${this.id}>edit</button>
+                <button id="delete-button" data-id=${this.id}>DELETE</button>
             </div>
             </br>`;
     }
@@ -28,6 +28,7 @@ class Recording {
         return this.all.find(recording => recording.id === id);
     }
 
+    // NOTE: this.audio_url to blob 
     //  **dataURL to blob**
     dataURLtoBlob(dataurl) {
         var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
