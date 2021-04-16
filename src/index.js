@@ -24,6 +24,56 @@ function initLoad() {
     }
 }
 
+//LOGIN FORM 
+const loginForm = document.querySelector('#login-form')
+loginForm.addEventListener("submit", (e) => loginFormHandler(e))
+
+function loginFormHandler(e) {
+    //prevents refresh on submit 
+    e.preventDefault()
+    const emailInput = e.target.querySelector('#login-email').value
+    const pwInput = e.target.querySelector('#login-password').value
+    loginFetch(emailInput, pwInput)
+}
+
+function loginFetch(email, password){
+    //strong params = nested user data 
+    const bodyData = {user: {
+        email: email, 
+        password: password
+    }
+}
+    console.log(bodyData);
+    fetch("http://localhost:3000/api/v1/login", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(bodyData)
+    })
+    //promise represents the value of a complete asynchronous operation. Allows us to know if event is a success or failure: pending, fulfilled, or rejected
+    .then(response => response.json())
+    .then(json => {
+        console.log(json);
+        //storing token from login fetch request json in localStorage
+        localStorage.setItem('jwt_token', json.jwt)
+        renderUserProfile()
+    })
+}
+
+function renderUserProfile() {
+    console.log(localStorage.getItem('jwt_token'));
+    fetch('http://localhost:3000/api/v1/profile', {
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem('jwt_token')}`
+        }
+    })
+    .then(res => res.json())
+    .then(json => {
+        alert(`Welcome back ${json.user.data.attributes.name}`);
+        initLoad();
+    })
+}
+
 function logout() {
         localStorage.removeItem('jwt_token');
         location.reload();
@@ -83,55 +133,7 @@ function initRecorder() {
         })
     }
 
-    //LOGIN FORM 
-    const loginForm = document.querySelector('#login-form')
-    loginForm.addEventListener("submit", (e) => loginFormHandler(e))
-
-    function loginFormHandler(e) {
-        //prevents refresh on submit 
-        e.preventDefault()
-        const emailInput = e.target.querySelector('#login-email').value
-        const pwInput = e.target.querySelector('#login-password').value
-        loginFetch(emailInput, pwInput)
-    }
-
-    function loginFetch(email, password){
-        //strong params = nested user data 
-        const bodyData = {user: {
-            email: email, 
-            password: password
-        }
-    }
-        console.log(bodyData);
-        fetch("http://localhost:3000/api/v1/login", {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(bodyData)
-        })
-        //promise represents the value of a complete asynchronous operation. Allows us to know if event is a success or failure: pending, fulfilled, or rejected
-        .then(response => response.json())
-        .then(json => {
-            console.log(json);
-            //storing token from login fetch request json in localStorage
-            localStorage.setItem('jwt_token', json.jwt)
-            renderUserProfile()
-        })
-    }
-
-    function renderUserProfile() {
-        console.log(localStorage.getItem('jwt_token'));
-        fetch('http://localhost:3000/api/v1/profile', {
-            method: 'GET',
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem('jwt_token')}`
-            }
-        })
-        .then(res => res.json())
-        .then(json => {
-            alert(`Welcome back ${json.user.data.attributes.name}`);
-            initLoad();
-        })
-    }
+    
   
     // navigator object is included in the browser - chrome, safari, firefox . Here we are grabbing the audio recorder utility in the browser and checking if it exists. 
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
