@@ -7,3 +7,4 @@
  *add pin and like buttons to recording list*
  *add pause button? forward and rewind?*
  *eventually have a public page for users to pin their audio recordings*
+ 

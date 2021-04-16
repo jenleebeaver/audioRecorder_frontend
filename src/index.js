@@ -12,11 +12,13 @@ document.addEventListener('DOMContentLoaded', () => {
 function initLoad() {
     const userExist = localStorage.getItem('jwt_token');
     if (userExist) {
+        // document.querySelector('.signin-container').style.display = 'block';
         document.querySelector('.logout-btn').style.display = 'block';
         document.querySelector('.login-container').style.display = 'none';
         document.querySelector('.form-container').style.display = 'block';
         document.querySelector('#recording-list-container').style.display = 'flex';    
     } else {
+        document.querySelector('.signin-container').style.display = 'none';
         document.querySelector('.logout-btn').style.display = 'none';
         document.querySelector('#recording-list-container').style.display = 'none';  
     }

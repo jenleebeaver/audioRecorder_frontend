@@ -82,6 +82,8 @@ input {
     border: 1px solid #FFFFFF !important;
     box-sizing: border-box !important;
     border-radius: 36px !important;
+
+    color: #FFFFFF;
 }
 
 label {
@@ -131,8 +133,8 @@ label {
     border-color: none !important;
 }
 
-.edit-container {
-
+#signin-form {
+    color: #FFFFFF;
 }
 
 #create-recording-form {
