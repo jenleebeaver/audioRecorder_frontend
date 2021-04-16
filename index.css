@@ -10,6 +10,8 @@ h1 {
     letter-spacing: 0em;
     /* text-align: center; */
     margin-top: 24px;
+
+    color: #FFFFFF;
 }
 
 h3 {
@@ -82,6 +84,11 @@ input {
     border-radius: 36px !important;
 }
 
+label {
+    font-family: 'Open Sans', sans-serif;
+    color: #FFFFFF; 
+}
+
 .login-container {
     background-color: rgb(2 35 58 / 93%);
     color: #FFFFFF;
@@ -122,6 +129,10 @@ input {
     height: 68px !important;
     background: rgba(2, 35, 58, 0.88) !important;
     border-color: none !important;
+}
+
+.edit-container {
+
 }
 
 #create-recording-form {
@@ -174,16 +185,54 @@ input {
 
 /* EDIT FORM  */
 #input-title {
-      /* position: absolute; */
-      width: 321px !important;
+      width: 240px !important;
       height: 64px !important;
-      /* left: 514px;
-      top: 304px; */
+    
   
       background: #0C2A40 !important;
       border: 1px solid #FFFFFF !important;
       box-sizing: border-box !important;
       border-radius: 36px !important;
+
+      color: #FFFFFF; 
+}
+
+#input-data {
+        width: 240px !important;
+        height: 64px !important;
+      
+    
+        background: #0C2A40 !important;
+        border: 1px solid #FFFFFF !important;
+        box-sizing: border-box !important;
+        border-radius: 36px !important;
+  
+        color: #FFFFFF;
+}
+
+#edit-button {
+    font-family: 'Work Sans', sans-serif !important;
+    font-style: normal !important;
+    font-weight: bold !important;
+    font-size: 16px !important;
+    line-height: 19px !important;
+    color: rgba(2, 35, 58, 0.88) !important;
+
+    width: 182px !important;
+    height: 64px !important;
+
+    background: linear-gradient(180deg, #9DFFC5 50%, rgba(157, 255, 197, 0) 114.84%) !important;
+    border-radius: 36px !important;
+    border-color: rgba(2, 35, 58, 0.88) !important;
+}
+
+#edit-button:hover {
+    color: #9DFFC5 !important;
+
+    width: 186px !important;
+    height: 68px !important;
+    background: linear-gradient(180deg, rgba(157, 255, 197, 0) 50%, #9DFFC5 114.84%) !important;
+    border-color: #9DFFC5 !important;
 }
 
 

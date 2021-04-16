@@ -41,15 +41,18 @@ class Recording {
 
     renderUpdateForm() {
         return `
-        <form data-id=${this.id}>
+        <form class="edit-container" data-id=${this.id} style="width: 360px; height: scroll;">
+            </br>
             <h1>Edit Your Recording</h1>
 
             <label>Title:</label>
+            </br>
             <input id='input-title' type="text" name="title" value="${this.title}">
             <br/>
             <br/>
 
             <label>Audio Data:</label>
+            </br>
             <input id='input-data' type="text" name="audio_url" value="${this.audio_url}">
             <br/>
             <br/>

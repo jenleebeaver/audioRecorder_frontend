@@ -215,7 +215,6 @@ function initRecorder() {
         const recording = Recording.findById(id);
         console.log(recording); 
         document.querySelector('#update-recording').innerHTML = recording.renderUpdateForm();
-        location.reload();
         //solution for inner edit form needs to be nested 
         // e.target.innerHTML = recording.renderUpdateForm();
     });
@@ -248,11 +247,11 @@ function initRecorder() {
             },
             body: JSON.stringify(bodyJSON),
         })
+        location.reload()
+        alert(`Your recording has been edited.`)
         .then(response => response.json())
         .then(updatedRecording => {
             console.log(updatedRecording)
-            alert(`Your recording has been edited.`)
-            initLoad()
         });
     }
 
