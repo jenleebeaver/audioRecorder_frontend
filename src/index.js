@@ -22,7 +22,8 @@ function initLoad() {
     } else {
         document.querySelector('.signin-container').style.display = 'none';
         document.querySelector('.logout-btn').style.display = 'none';
-        document.querySelector('#recording-list-container').style.display = 'none';  
+        document.querySelector('#recording-list-container').style.display = 'none'; 
+        document.querySelector('#recording-container').style.display = 'none'; 
     }
 }
 
