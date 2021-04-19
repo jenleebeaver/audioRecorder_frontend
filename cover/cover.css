@@ -75,8 +75,7 @@ body {
 #button:hover {
   color: #9DFFC5;
 
-  width: 186px;
-  height: 68px;
+  padding: 24px 36px;
   background: linear-gradient(180deg, rgba(157, 255, 197, 0) 50%, #9DFFC5 114.84%);
   border-color: #9DFFC5;
 }
