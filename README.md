@@ -11,4 +11,5 @@
  *onClick link signup button => setup signup functionality* 
  *list of current_users.recordings*
  *convert audioURL back to blob for users to play their audio* 
+ *appended delete button in JS actually delete file*
  

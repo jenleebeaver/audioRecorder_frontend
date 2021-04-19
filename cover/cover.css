@@ -65,11 +65,7 @@ body {
     line-height: 19px;
     color: rgba(2, 35, 58, 0.88);
 
-    /* position: absolute; */
-    width: 182px;
-    height: 64px;
-    /* left: 439px;
-    top: 676px; */
+  padding: 20px 30px;
 
     background: linear-gradient(180deg, #9DFFC5 50%, rgba(157, 255, 197, 0) 114.84%);
     border-radius: 36px;

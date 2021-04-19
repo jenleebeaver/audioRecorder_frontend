@@ -18,12 +18,12 @@ function initLoad() {
         document.querySelector('.logout-btn').style.display = 'block';
         document.querySelector('.login-container').style.display = 'none';
         document.querySelector('.form-container').style.display = 'block';
-        document.querySelector('#recording-list-container').style.display = 'flex';    
+        document.querySelector('#recording-list-container').style.display = 'flex';     
     } else {
         // document.querySelector('.signin-container').style.display = 'none';
         document.querySelector('.logout-btn').style.display = 'none';
         document.querySelector('#recording-list-container').style.display = 'none'; 
-        document.querySelector('#recording-container').style.display = 'none'; 
+        // document.querySelector('#recording-container').style.display = 'none'; 
     }
 }
 
@@ -164,20 +164,21 @@ function initRecorder() {
                 const clipLabel = document.createElement('p');
                 const userLabel = document.createElement('h1');
                 const audio = document.createElement('audio');
-                const deleteButton = document.createElement('button');
+                //delete button only deletes downloaded file 
+                // const deleteButton = document.createElement('button');
                 // const saveButton = document.createElement('button');
                 
                 // userLabel.innerHTML = userName;
                 // clipLabel.innerHTML = clipName;
                 clipContainer.classList.add('clip');
                 audio.setAttribute('controls', '');
-                deleteButton.innerHTML = "Delete";
+                // deleteButton.innerHTML = "Delete";
                 // saveButton.innerHTML = "Save";
                 
                 clipContainer.appendChild(userLabel);
                 clipContainer.appendChild(clipLabel);
                 clipContainer.appendChild(audio);
-                clipContainer.appendChild(deleteButton);
+                // clipContainer.appendChild(deleteButton);
                 // clipContainer.appendChild(saveButton);
                 soundClips.appendChild(clipContainer);
                 
@@ -192,10 +193,10 @@ function initRecorder() {
 
                 audio.src = audioURL;
                 
-                deleteButton.onclick = function(e) {
-                    let evtTgt = e.target;
-                    evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
-                }
+                // deleteButton.onclick = function(e) {
+                //     let evtTgt = e.target;
+                //     evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
+                // }
 
             }
 
