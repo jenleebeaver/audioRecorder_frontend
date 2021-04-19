@@ -1,6 +1,8 @@
 //this is our get request to the recording#index in our rails backend server
 const endPoint = "http://localhost:3000/api/v1/recordings"
 let blob
+const jwtToken = localStorage.getItem('jwt_token')
+
 //fetching recordings 
 document.addEventListener('DOMContentLoaded', () => {
     console.log("DOM is Loaded");
