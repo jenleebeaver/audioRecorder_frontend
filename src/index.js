@@ -20,7 +20,7 @@ function initLoad() {
         document.querySelector('.form-container').style.display = 'block';
         document.querySelector('#recording-list-container').style.display = 'flex';    
     } else {
-        document.querySelector('.signin-container').style.display = 'none';
+        // document.querySelector('.signin-container').style.display = 'none';
         document.querySelector('.logout-btn').style.display = 'none';
         document.querySelector('#recording-list-container').style.display = 'none'; 
         document.querySelector('#recording-container').style.display = 'none'; 
