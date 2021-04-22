@@ -62,6 +62,51 @@ function loginFetch(email, password){
     })
 }
 
+//EDIT FORM 
+function loadRecordingEvents() {
+    const editBtns = document.querySelectorAll('.edit-btn');
+    editBtns.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+        const id = parseInt(e.target.getAttribute("data-id"));
+        const recording = Recording.findById(id);
+        console.log(recording); 
+        document.querySelector('#update-recording').innerHTML = recording.renderUpdateForm();
+        // console.log(parseInt(e.target.getAttribute("data-id")));
+        })
+    })
+}
+
+document.querySelector('#update-recording').addEventListener('submit', e => updateFormHandler(e))
+    
+function updateFormHandler(e) {
+    e.preventDefault();
+    
+    const id = parseInt(e.target.dataset.id);
+    const recording = Recording.findById(id);
+    const title = e.target.querySelector('#input-title').value;
+    const audio_url = e.target.querySelector('#input-data').value;
+    patchRecording(recording, title, audio_url)
+}
+
+function patchRecording(recording, title, audio_url) {
+    const bodyJSON = {title, audio_url}
+    console.log(bodyJSON)
+    fetch(`http://localhost:3000/api/v1/recordings/${recording.id}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+        },
+        body: JSON.stringify(bodyJSON),
+    })
+    location.reload()
+    alert(`Your recording has been edited.`)
+    .then(response => response.json())
+    .then(updatedRecording => {
+        console.log(updatedRecording)
+    });
+}
+
 function renderUserProfile() {
     console.log(localStorage.getItem('jwt_token'));
     fetch('http://localhost:3000/api/v1/profile', {
@@ -199,8 +244,6 @@ function initRecorder() {
                 // }
 
             }
-
-
             }
            )
      
@@ -213,55 +256,7 @@ function initRecorder() {
         console.log('getUserMedia not supported on your browser!');
      };
 
-   
-    //EDIT FORM
-    //with delete button getElementById('delete-button')
-    const recordingContainer = document.querySelector('#recording-container')
-    recordingContainer.addEventListener('click', e => {
-        console.log('clicked');
-        const id = parseInt(e.target.dataset.id);
-        const recording = Recording.findById(id);
-        console.log(recording); 
-        document.querySelector('#update-recording').innerHTML = recording.renderUpdateForm();
-        //solution for inner edit form needs to be nested 
-        // e.target.innerHTML = recording.renderUpdateForm();
-    });
-    // listen for the submit event of the edit form and handle the data
-    document.querySelector('#update-recording').addEventListener('submit', e => updateFormHandler(e))
 
-    // e => {
-    //     debugger
-    //     updateFormHandler(e)
-    // })
-    
-    function updateFormHandler(e) {
-        e.preventDefault();
-        
-        const id = parseInt(e.target.dataset.id);
-        const recording = Recording.findById(id);
-        const title = e.target.querySelector('#input-title').value;
-        const audio_url = e.target.querySelector('#input-data').value;
-        patchRecording(recording, title, audio_url)
-    }
-
-    function patchRecording(recording, title, audio_url) {
-        const bodyJSON = {title, audio_url}
-        console.log(bodyJSON)
-        fetch(`http://localhost:3000/api/v1/recordings/${recording.id}`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json',
-                Accept: 'application/json',
-            },
-            body: JSON.stringify(bodyJSON),
-        })
-        location.reload()
-        alert(`Your recording has been edited.`)
-        .then(response => response.json())
-        .then(updatedRecording => {
-            console.log(updatedRecording)
-        });
-    }
 
     //DELETE
     // const deleteButton = document.getElementById("delete-button");
@@ -312,9 +307,9 @@ function getRecordings() {
                 const newRecording = new Recording(parseInt(recording.id), recordingData.title, recordingData.audio_url, recording.attributes.user.name); 
                 //updating the inner html with id recording-container to show data from Recording Card in recording.js
                 document.querySelector('#recording-container').innerHTML += newRecording.renderRecordingCard();
-                // debugger
-                // render(recording)
            });
+
+           loadRecordingEvents()
        }))
 }
 

@@ -6,18 +6,16 @@ class Recording {
         this.audio_url = audio_url;
         this.user = user_name;
         Recording.all.push(this);
-        // debugger
     }  
 
     renderRecordingCard() {
-        // debugger
         return `
             <div data-id=${this.id}>
                 <h3>${this.title}</h3> 
                 <p>${this.user}</p>
                 <p>${this.audio_url}</p>
                 <br/>
-                <button id="edit-button" data-id=${this.id}>edit</button>
+                <button class="edit-btn" data-id=${this.id}>edit</button>
                 <button id="delete-button" data-id=${this.id}>DELETE</button>
             </div>
             </br>`;
