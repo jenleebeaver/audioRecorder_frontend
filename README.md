@@ -2,8 +2,8 @@
  Frontend for audioRecorder application. 
  
  SPA with a user login. App allows users to record a blob using the webAudio API and displays list of recordings.
-
- https://www.youtube.com/watch?v=KAqOabpQsH8&t=2s
+[
+Watch Video Walkthrough here](https://www.youtube.com/watch?v=KAqOabpQsH8&t=2s)
 
  Stretch Goals:
  *Will have to use a different backend to store audio*
