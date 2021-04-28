@@ -16,7 +16,7 @@ class Recording {
                 <p>${this.audio_url}</p>
                 <br/>
                 <button class="edit-btn" data-id=${this.id}>edit</button>
-                <button id="delete-button" data-id=${this.id}>DELETE</button>
+                <button id="delete-btn" data-id=${this.id}>DELETE</button>
             </div>
             </br>`;
     }

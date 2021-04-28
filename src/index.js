@@ -107,6 +107,8 @@ function patchRecording(recording, title, audio_url) {
     });
 }
 
+//
+
 function renderUserProfile() {
     console.log(localStorage.getItem('jwt_token'));
     fetch('http://localhost:3000/api/v1/profile', {
@@ -174,14 +176,8 @@ function initRecorder() {
         .then(response => response.json())
         .then(recording => {
             location.reload();
-            // console.log(recording);
-            // const newRecording = new Recording(parseInt(recording.id), recording.title, recording.audio_url, recording.user); 
-            //     //updating the inner html with id recording-container to show data from Recording Card in recording.js
-            //     document.querySelector('#recording-container').innerHTML += newRecording.renderRecordingCard();
         })
-    }
-
-    
+    }  
   
     // navigator object is included in the browser - chrome, safari, firefox . Here we are grabbing the audio recorder utility in the browser and checking if it exists. 
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
@@ -209,7 +205,8 @@ function initRecorder() {
                 const clipLabel = document.createElement('p');
                 const userLabel = document.createElement('h1');
                 const audio = document.createElement('audio');
-                //delete button only deletes downloaded file 
+
+                // const deleteButton only deletes downloaded file on frontend  
                 // const deleteButton = document.createElement('button');
                 // const saveButton = document.createElement('button');
                 
@@ -258,7 +255,7 @@ function initRecorder() {
 
 
 
-    //DELETE
+    //DELETE *REFACTOR*
     // const deleteButton = document.getElementById("delete-button");
     // deleteButton.addEventListener('click', e => {
     //     console.log('clicked');
@@ -299,7 +296,7 @@ function getRecordings() {
        .then(response => response.json()
        .then(recordings => {
            //this is where we show our data 
-           //call users.data.forEach because data is nested in the jsonserializer  
+           //call recordings.data.forEach because data is nested in the jsonserializer  
            recordings.data.forEach(recording => {
                 //creating a new instance of recording class by passing in recording object from recording.js
                 //args pass attributes to recording class
