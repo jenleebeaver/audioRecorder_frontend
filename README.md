@@ -5,6 +5,8 @@
 [
 Watch Video Walkthrough here](https://www.youtube.com/watch?v=KAqOabpQsH8&t=2s)
 
+Run `open ./cover/cover.html` in terminal to navigate app. 
+
  Stretch Goals:
  *Will have to use a different backend to store audio*
  *create categories for recordings for associated models*
