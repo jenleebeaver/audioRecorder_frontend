@@ -1,7 +1,13 @@
 # audioRecorder_frontend
- frontend for audioRecorder application 
+ Frontend for audioRecorder application. 
+ 
+ SPA with a user login. App allows users to record a blob using the webAudio API and displays list of recordings.
+[
+Watch Video Walkthrough here](https://www.youtube.com/watch?v=KAqOabpQsH8&t=2s)
 
- Note:
+Run `open ./cover/cover.html` in terminal to navigate app. 
+
+ Stretch Goals:
  *Will have to use a different backend to store audio*
  *create categories for recordings for associated models*
  *add pin and like buttons to recording list*
