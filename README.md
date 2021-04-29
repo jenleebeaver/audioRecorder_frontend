@@ -2,16 +2,20 @@
  Frontend for audioRecorder application. 
  
  SPA with a user login. App allows users to record a blob using the webAudio API and displays list of recordings.
-[
-Watch Video Walkthrough here](https://www.youtube.com/watch?v=KAqOabpQsH8&t=2s)
 
+## Configuration 
 Run `open ./cover/cover.html` in terminal to navigate app. 
 
 Navigate to audio_recorder backend and run `rails s` to get the JSON data to boot up. 
 
-Directly message me if you would like to navigate the app and need the user login. 
+Directly message me if you would like to navigate the app and need the user login.
 
- Stretch Goals:
+## Walkthrough
+[Watch Video Walkthrough here](https://www.youtube.com/watch?v=KAqOabpQsH8&t=2s)
+
+## Project Plans 
+Notate music notes 
+Signup feature
  *Will have to use a different backend to store audio*
  *create categories for recordings for associated models*
  *add pin and like buttons to recording list*
