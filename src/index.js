@@ -178,6 +178,7 @@ function initRecorder() {
             const newRecording = new Recording( recording.user_id, recording.title, recording.audio_url);
             document.querySelector('#recording-container').innerHTML += newRecording.renderRecordingCard();
             document.getElementById("create-recording-form").reset();
+            alert(`Your audio has been saved.  Please view your recording's list.`);
         })
     }  
   
