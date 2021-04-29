@@ -166,7 +166,7 @@ function initRecorder() {
         const formData = new FormData;
         //audio_url should be audioData
         const recordingObj = JSON.stringify({ title: nameAudio, user_id: userId, audio_url: audioData });
-        console.log(recordingObj);
+        // console.log(recordingObj);
         formData.append('recording', recordingObj);
         return fetch(endPoint, {
           method: 'POST',
@@ -175,7 +175,9 @@ function initRecorder() {
         })
         .then(response => response.json())
         .then(recording => {
-            location.reload();
+            const newRecording = new Recording( recording.user_id, recording.title, recording.audio_url);
+            document.querySelector('#recording-container').innerHTML += newRecording.renderRecordingCard();
+            document.getElementById("create-recording-form").reset();
         })
     }  
   
