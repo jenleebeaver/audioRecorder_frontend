@@ -7,6 +7,10 @@ Watch Video Walkthrough here](https://www.youtube.com/watch?v=KAqOabpQsH8&t=2s)
 
 Run `open ./cover/cover.html` in terminal to navigate app. 
 
+Navigate to audio_recorder backend and run `rails s` to get the JSON data to boot up. 
+
+Directly message me if you would like to navigate the app and need the user login. 
+
  Stretch Goals:
  *Will have to use a different backend to store audio*
  *create categories for recordings for associated models*
